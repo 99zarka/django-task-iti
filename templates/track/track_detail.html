@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Track Details{% endblock %}
+
+{% block content %}
+    <h1>Track Details</h1>
+    <div class="card">
+        <p><strong>ID:</strong> {{ track.id }}</p>
+        <p><strong>Name:</strong> {{ track.name }}</p>
+        <a href="{% url 'track_update' track.id %}" class="btn btn-warning">Edit</a>
+        <a href="{% url 'track_delete' track.id %}" class="btn btn-danger">Delete</a>
+        <a href="{% url 'track_list' %}" class="btn">Back to Tracks</a>
+    </div>
+{% endblock %}

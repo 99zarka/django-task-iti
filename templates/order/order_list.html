@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Your Orders</h2>
+    <a href="{% url 'order_create' %}" class="btn btn-primary mb-3">Place New Order</a>
+    {% if orders %}
+    <div class="list-group">
+        {% for order in orders %}
+        <a href="{% url 'order_detail' order.pk %}" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Order #{{ order.id }} - {{ order.product.name }} ({{ order.product_quantity }} units)</h5>
+                <small>{{ order.order_date|date:"M d, Y H:i" }}</small>
+            </div>
+            <p class="mb-1">Address: {{ order.address }}</p>
+            <small>Email: {{ order.email }}</small>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>You have not placed any orders yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

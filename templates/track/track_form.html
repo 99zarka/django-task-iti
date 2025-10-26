@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if track %}Edit Track{% else %}Create Track{% endif %}{% endblock %}
+
+{% block content %}
+    <h1>{% if track %}Edit Track{% else %}Create New Track{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">Track Name:</label>
+            <input type="text" id="name" name="name" value="{{ track.name|default:'' }}" required>
+        </div>
+        <button type="submit" class="btn">Save</button>
+        <a href="{% url 'track_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

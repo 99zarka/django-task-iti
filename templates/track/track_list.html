@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Tracks{% endblock %}
+
+{% block content %}
+    <h1>Tracks</h1>
+    <a href="{% url 'track_create' %}" class="btn">Add New Track</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for track in tracks %}
+            <tr>
+                <td>{{ track.id }}</td>
+                <td>{{ track.name }}</td>
+                <td>
+                    <a href="{% url 'track_detail' track.id %}" class="btn">View</a>
+                    <a href="{% url 'track_update' track.id %}" class="btn btn-warning">Edit</a>
+                    <a href="{% url 'track_delete' track.id %}" class="btn btn-danger">Delete</a>
+                    <a href="{% url 'track_students' track.id %}" class="btn">Show Students</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
